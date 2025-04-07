@@ -1,0 +1,32 @@
+# Compilados
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+
+# Archivos de publicación
+publish/
+out/
+
+# Configuración de usuario
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Archivos de VS Code
+.vscode/
+
+# Archivos de VS
+*.vs/
+.vs/
+
+# Logs y depuración
+*.log
+TestResults/
+
+# Archivos temporales
+*.tmp
+*.bak
+*.cache
