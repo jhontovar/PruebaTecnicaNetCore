@@ -1,14 +1,6 @@
-using core.Interfaces;
-using core.Interfaces.Repository;
-using core.Services;
-using Infrastructure.Context;
-using Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
-using Productos.Extensions;
-
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Productos.Extensions;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -3,9 +3,6 @@ using core.Services;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-
 namespace Productos.Extensions
 {
     public static class ServiceCollectionExtensions
@@ -20,7 +17,7 @@ namespace Productos.Extensions
             , IConfiguration configuration)
         {
             return services.AddDbContext<AppDbContext>(options =>
-             options.UseInMemoryDatabase("ProductosDb"));
+             options.UseInMemoryDatabase(configuration.GetSection("secretCadenaConexion").Value));
         }
 
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
@@ -33,6 +30,6 @@ namespace Productos.Extensions
         }
 
 
-       
+
     }
 }
