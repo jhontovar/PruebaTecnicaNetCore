@@ -1,10 +1,7 @@
 ﻿using core.dto;
-using core.Entities;
 using core.Interfaces;
-using core.Interfaces.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Productos.Controllers
 {
@@ -66,13 +63,13 @@ namespace Productos.Controllers
             return response;
         }
 
-       /// <summary>
-       /// Guardar producto
-       /// </summary>
-       /// <param name="producto"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// Guardar producto
+        /// </summary>
+        /// <param name="producto"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<ResponseDto> Post([FromBody] Producto producto)
+        public async Task<ResponseDto> Post([FromBody] ProductoDto producto)
         {
 
             try
@@ -95,7 +92,7 @@ namespace Productos.Controllers
         /// <param name="producto"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<ResponseDto> Put([FromBody] Producto producto)
+        public async Task<ResponseDto> Put([FromBody] ProductoDto producto)
         {
             try
             {

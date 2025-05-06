@@ -1,46 +1,51 @@
-﻿using core.Entities;
+﻿using core.dto;
+using core.Entities;
 using core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace core.Services
 {
-    public class ProductoService: IProductoService
+    public class ProductoService : IProductoService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMappingService _mapper;
 
-        public ProductoService(IUnitOfWork unitOfWork)
+        public ProductoService(IUnitOfWork unitOfWork, IMappingService mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
-        public async Task<List<Producto>> ObtenerTodos()
+        public async Task<List<ProductoDto>> ObtenerTodos()
         {
-            return await _unitOfWork.ProductoRepository.ObtenerTodos();
-        }
-        
-        public async Task<Producto> ObtenerPorId(int id)
-        {
-            return await _unitOfWork.ProductoRepository.ObtenerPorId(id);
+            var response = await _unitOfWork.ProductoRepository.ObtenerTodos();
+            return _mapper.Map<List<ProductoDto>>(response);
+
         }
 
-        public async Task<Producto> Crear(Producto producto)
+        public async Task<ProductoDto> ObtenerPorId(int id)
         {
-            await _unitOfWork.ProductoRepository.Crear(producto);
+            var response = await _unitOfWork.ProductoRepository.ObtenerPorId(id);
+            return _mapper.Map<ProductoDto>(response);
+        }
+
+        public async Task<ProductoDto> Crear(ProductoDto producto)
+        {
+            var _producto = _mapper.Map<Producto>(producto); // Usa tu interfaz personalizada
+            await _unitOfWork.ProductoRepository.Crear(_producto);
             await _unitOfWork.GuardarCambiosAsync();
-            return producto;
+            return _mapper.Map<ProductoDto>(_producto);
         }
 
-        public async Task<Producto?> Actualizar(Producto producto)
+        public async Task<ProductoDto?> Actualizar(ProductoDto producto)
         {
-            var actualizado = await _unitOfWork.ProductoRepository.Actualizar(producto);
+            var _producto = _mapper.Map<Producto>(producto); // Usa tu interfaz personalizada
+            var actualizado = await _unitOfWork.ProductoRepository.Actualizar(_producto);
             if (actualizado != null)
                 await _unitOfWork.GuardarCambiosAsync();
 
-            return actualizado;
+            return _mapper.Map<ProductoDto>(actualizado);
+
         }
 
         public async Task<bool> Eliminar(int id)

@@ -1,18 +1,13 @@
-﻿using core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using core.dto;
 
 namespace core.Interfaces
 {
     public interface IProductoService
     {
-        Task<List<Producto>> ObtenerTodos();
-        Task<Producto> ObtenerPorId(int id);
-        Task<Producto> Crear(Producto producto);
-        Task<Producto> Actualizar(Producto producto);
+        Task<List<ProductoDto>> ObtenerTodos();
+        Task<ProductoDto> ObtenerPorId(int id);
+        Task<ProductoDto> Crear(ProductoDto producto);
+        Task<ProductoDto> Actualizar(ProductoDto producto);
         Task<bool> Eliminar(int id);
     }
 }

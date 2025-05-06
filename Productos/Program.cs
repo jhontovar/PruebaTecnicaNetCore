@@ -1,3 +1,4 @@
+using Infrastructure.Mapping;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Productos.Extensions;
@@ -11,7 +12,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddAutoMapper();
 builder.Services.AddUnitOfWork();
 builder.Services.AddDatabase(builder.Configuration);
 builder.Services.AddBusinessServices();
